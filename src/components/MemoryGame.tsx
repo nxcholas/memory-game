@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { shuffle } from "lodash-es";
 
 type MemoryGameProps = {
@@ -106,13 +106,13 @@ function MemoryGame({ images }: MemoryGameProps) {
             <img
               src={card.imgSrc}
               alt={`Card ${idx + 1}`}
-              className="aspect-square"
+              className="object-cover w-full h-40"
             />
           ) : (
             <div
               key={idx}
               onClick={() => handleCardClick(card)}
-              className="bg-gray-300 w-40 h-40 hover:bg-gray-400 cursor-pointer"
+              className="bg-gray-300 w-full h-40 hover:bg-gray-400 cursor-pointer"
             ></div>
           )}
         </div>

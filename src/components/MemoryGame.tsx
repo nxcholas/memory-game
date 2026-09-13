@@ -72,33 +72,31 @@ function MemoryGame({ images }: MemoryGameProps) {
           return card;
         }),
       );
-
+      // set selected to new cards id
       setSelected([selectedCard.id]);
-    }
-  };
 
-  // check for match
-  useEffect(() => {
-    // check if there are 2 cards selected
-    if (selected.length === 2) {
-      const [firstId, secondId] = selected;
+      // check for match
+      // check if there are 2 cards selected
+      if (selected.length === 2) {
+        const [firstId, secondId] = selected;
 
-      // find the card in cards that matches the first and second selected cards
-      const firstCard = cards.find((card) => card.id === firstId);
-      const secondCard = cards.find((card) => card.id === secondId);
+        // find the card in cards that matches the first and second selected cards
+        const firstCard = cards.find((card) => card.id === firstId);
+        const secondCard = cards.find((card) => card.id === secondId);
 
-      // if the imgsrc of the first card matches the imgsrc of the second card (which should be the same) then set isMatched to true
-      if (firstCard?.imgSrc === secondCard?.imgSrc) {
-        setCards((prevCards) =>
-          prevCards.map((card) =>
-            card.id === firstId || card.id === secondId
-              ? { ...card, isMatched: true }
-              : card,
-          ),
-        );
+        // if the imgsrc of the first card matches the imgsrc of the second card (which should be the same) then set isMatched to true
+        if (firstCard?.imgSrc === secondCard?.imgSrc) {
+          setCards((prevCards) =>
+            prevCards.map((card) =>
+              card.id === firstId || card.id === secondId
+                ? { ...card, isMatched: true }
+                : card,
+            ),
+          );
+        }
       }
     }
-  }, [selected]);
+  };
 
   return (
     <div className="grid grid-cols-4 gap-4 p-4">

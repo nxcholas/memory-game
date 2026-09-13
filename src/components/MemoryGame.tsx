@@ -12,15 +12,19 @@ type CardProps = {
   isMatched: boolean;
 };
 
+function createInitialCards({ images }: MemoryGameProps) {
+  const initialCards = [...images, ...images].map((imgSrc, index) => ({
+    id: index,
+    imgSrc: imgSrc,
+    isFlipped: false,
+    isMatched: false,
+  }));
+
+  return initialCards;
+}
+
 function MemoryGame({ images }: MemoryGameProps) {
-  const [cards, setCards] = useState(
-    [...images, ...images].map((imgSrc, index) => ({
-      id: index,
-      imgSrc: imgSrc,
-      isFlipped: false,
-      isMatched: false,
-    })),
-  );
+  const [cards, setCards] = useState(() => createInitialCards({ images }));
 
   const [selected, setSelected] = useState<number[]>([]);
 
